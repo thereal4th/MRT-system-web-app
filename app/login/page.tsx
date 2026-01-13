@@ -3,11 +3,10 @@
 'use client';
 
 import {useActionState} from 'react';
-import {useSearchParams} from 'next/navigation';
 import Link from 'next/link';
 //TODO: import {authenticate} from '';
 import {Button} from '@/components/Button';
-import {CalendarCheck, LogIn, AlertCircle, CheckCircle2} from 'lucide-react';
+import {CalendarCheck, LogIn,} from 'lucide-react';
 
 export default function LoginPage(){
     //TODO: const [errorMessage, dispatch, isPending] = useActionState(authenticate, undefined);

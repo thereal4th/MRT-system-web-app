@@ -1,13 +1,13 @@
 'use client';
-import {LayoutDashboard, Building2, Users, Settings, LogOut} from 'lucide-react';
-import {SidebarItem} from '@/components/sidebar-item';
+import {LayoutDashboard, TrainFront, UserStar, LogOut, User} from 'lucide-react';
+import {SidebarItem} from '@/components/admin/sidebar-item';
 
 export default function Sidebar(){
     return(
-        <aside>
+        <aside className="min-w-55 bg-white">
 
             {/*Logo*/}
-            <div className="h-16 flex items-center px-6 border-b border-gray-200">
+            <div className="h-16 flex items-center px-6 border-b border-gray-300 ">
                 <div className="flex items-center gap-2 font-bold text-xl text-blue-900">
                     <div className="h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center text-white">
                         M
@@ -21,8 +21,11 @@ export default function Sidebar(){
                 <div className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 pl-2">
                     Overview
                 </div>
-                <SidebarItem icon={LayoutDashboard} label="Dashboard" href="/dashboard"/>
-                <SidebarItem icon={Building2} label="Stations" href="/stations"/>
+                <SidebarItem icon={LayoutDashboard} label="Dashboard" href="/admin/dashboard"/>
+                <SidebarItem icon={TrainFront} label="Stations QR" href="/admin/stations"/>
+                <SidebarItem icon={TrainFront} label="Stations Database" href="/admin/stations/stations_database"/>
+                <SidebarItem icon={User} label="Passenger Database" href="/passenger_database"/>
+                <SidebarItem icon={UserStar} label="Staff Database" href="/staff_database"/>
             </div>
 
             {/*Footer */}
