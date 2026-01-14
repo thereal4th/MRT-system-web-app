@@ -23,9 +23,9 @@ export default function Sidebar(){
                 </div>
                 <SidebarItem icon={LayoutDashboard} label="Dashboard" href="/admin/dashboard"/>
                 <SidebarItem icon={TrainFront} label="Stations QR" href="/admin/stations"/>
-                <SidebarItem icon={TrainFront} label="Stations Database" href="/admin/stations/stations_database"/>
-                <SidebarItem icon={User} label="Passenger Database" href="/passenger_database"/>
-                <SidebarItem icon={UserStar} label="Staff Database" href="/staff_database"/>
+                <SidebarItem icon={TrainFront} label="Stations Database" href="/admin/stations/station_database"/>
+                <SidebarItem icon={User} label="Passenger Database" href="/admin/passenger_database"/>
+                <SidebarItem icon={UserStar} label="Staff Database" href="/admin/staff_database"/>
             </div>
 
             {/*Footer */}

@@ -65,8 +65,7 @@ export default function LoginPage(){
                                 name="password"
                                 type="password"
                                 required
-                                autoComplete="current-password" //for password managers
-                                placeholder="••••••••"
+                                placeholder="••••••••••"
                                 className="w-full px-4 py-2 text-gray-900 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-all"
                             />
                             

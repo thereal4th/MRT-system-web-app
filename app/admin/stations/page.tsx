@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import QRCode from 'react-qr-code'
-import { Printer, Download, MapPin } from 'lucide-react'
+import { RefreshCcw, MapPin } from 'lucide-react'
 
 //replace with DB data 
 const stations = [
@@ -126,7 +126,7 @@ function QRCard({ type, stationId, stationName, color }: { type: string, station
 
             <div className="mt-8 flex gap-3 w-full print:hidden">
                 <button className="flex-1 flex items-center justify-center gap-2 py-2 text-sm font-medium text-slate-600 bg-slate-100 rounded-lg hover:bg-slate-200">
-                    <Download className="h-4 w-4" /> Save
+                    <RefreshCcw className="h-4 w-4" /> Regenerate QR
                 </button>
             </div>
         </div>
