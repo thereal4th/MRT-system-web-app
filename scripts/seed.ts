@@ -3,31 +3,24 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 // Import your models
-// (Adjust these paths if your models are in a different folder)
-import User from '../models/User'; 
-import Passenger from '../models/Passenger';
-import Turnstile from '../models/Turnstile';
-import Admin from '../models/Admin';
-import Station from '../models/Station';
-import Trip from '../models/Trip';
+import Admin from '../Models/Admin';
+import Station from '../Models/Station';
 
 // Load environment variables (so we can read MONGODB_CONNECTION_STRING)
 dotenv.config({ path: '.env.local' });
 
 const STATIONS = [
-  { name: 'North Avenue', slug: 'north-ave', orderIndex: 1 },
-  { name: 'Quezon Avenue', slug: 'quezon-ave', orderIndex: 2 },
-  { name: 'GMA Kamuning', slug: 'kamuning', orderIndex: 3 },
-  { name: 'Araneta Center-Cubao', slug: 'cubao', orderIndex: 4 },
-  { name: 'Santolan-Annapolis', slug: 'santolan', orderIndex: 5 },
-  { name: 'Ortigas', slug: 'ortigas', orderIndex: 6 },
-  { name: 'Shaw Boulevard', slug: 'shaw', orderIndex: 7 },
-  { name: 'Boni', slug: 'boni', orderIndex: 8 },
-  { name: 'Guadalupe', slug: 'guadalupe', orderIndex: 9 },
-  { name: 'Buendia', slug: 'buendia', orderIndex: 10 },
-  { name: 'Ayala', slug: 'ayala', orderIndex: 11 },
-  { name: 'Magallanes', slug: 'magallanes', orderIndex: 12 },
-  { name: 'Taft Avenue', slug: 'taft', orderIndex: 13 },
+  { name: 'North Avenue', slug: 'north-ave', orderIndex: 1, distFromStartKm: 0},
+  { name: 'Quezon Avenue', slug: 'quezon-ave', orderIndex: 2, distFromStartKm: 1.2},
+  { name: 'Cubao', slug: 'cubao', orderIndex: 3, distFromStartKm: 3},
+  { name: 'Santolan', slug: 'santolan', orderIndex: 4, distFromStartKm: 4.2},
+  { name: 'Pasig', slug: 'pasig', orderIndex: 5, distFromStartKm: 5.4},
+  { name: 'Shaw Boulevard', slug: 'shaw-boulevard', orderIndex: 6, distFromStartKm: 6.5},
+  { name: 'Guadalupe', slug: 'guadalupe', orderIndex: 7, distFromStartKm: 8.5},
+  { name: 'Buendia', slug: 'buendia', orderIndex: 8, distFromStartKm: 9.2},
+  { name: 'Ayala', slug: 'ayala', orderIndex: 9, distFromStartKm: 11},
+  { name: 'Magallanes', slug: 'magallanes', orderIndex: 10, distFromStartKm: 13.4},
+  { name: 'Taft Avenue', slug: 'taft-ave', orderIndex: 11, distFromStartKm: 15},
 ];
 
 async function seed() {
@@ -40,9 +33,7 @@ async function seed() {
     await mongoose.connect(process.env.MONGODB_CONNECTION_STRING);
     
     console.log('Clearing existing data');
-    await User.deleteMany({});
     await Station.deleteMany({});
-    await Trip.deleteMany({});
 
     console.log('🚉 Seeding Stations...');
     await Station.insertMany(STATIONS);
@@ -52,7 +43,7 @@ async function seed() {
     // create admin
     await Admin.create({
       username: 'admin',
-      password: 'admin123', // TODO: HASH THE PASSWORD
+      password: 'admin123', // TODO: HASH THE PASSWORD'
       role: 'ADMIN'
     });
 
