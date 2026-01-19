@@ -1,5 +1,6 @@
 import {Schema, model, models, Document} from 'mongoose';
 
+//any model that inherits from this schema will have their role generated on creation using discriminator() method
 const options = {discriminatorKey: 'role', collection: 'users'}
 
 export interface UserDocument extends Document{

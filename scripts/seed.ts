@@ -42,9 +42,8 @@ async function seed() {
     
     // create admin
     await Admin.create({
-      username: 'admin',
+      username: 'admin2',
       password: 'admin123', // TODO: HASH THE PASSWORD'
-      role: 'ADMIN'
     });
 
 

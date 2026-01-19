@@ -8,7 +8,7 @@ export interface TurnstileDocument extends UserDocument{};
 const TurnstileSchema = new Schema<TurnstileDocument>({
     //dont need to add anything here    
 })
-
+//check first if turnstile models already exists, then automatically add role: TURNSTILE when document is created
 const Turnstile = mongoose.models.TURNSTILE || User.discriminator('TURNSTILE', TurnstileSchema);
 
 export default Turnstile;

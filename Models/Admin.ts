@@ -6,7 +6,7 @@ export interface AdminDocument extends UserDocument {}
 
 const AdminSchema = new Schema<AdminDocument>({});
 
-//check first if admin already exists models
+//check first if admin models already exists, then automatically add role: ADMIN when document is created
 const Admin = mongoose.models.ADMIN || User.discriminator<AdminDocument>('ADMIN', AdminSchema);
 
 export default Admin;
