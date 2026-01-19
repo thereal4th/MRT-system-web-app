@@ -4,7 +4,7 @@
 
 import {useActionState} from 'react';
 import Link from 'next/link';
-//TODO: import {authenticate} from '';
+//TODO: import {authenticate} from '@/app/auth';
 import {Button} from '@/components/Button';
 import {CalendarCheck, LogIn,} from 'lucide-react';
 
@@ -45,14 +45,14 @@ export default function LoginPage(){
                     <form className="space-y-5">
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-1">
-                                Email Address
+                                Username
                             </label>
                             <input
-                                name="email"
-                                type="email"
+                                name="username"
+                                type="text"
                                 required
-                                autoComplete="email" //for password managers
-                                placeholder="john@example.com"
+                                autoComplete="username" //for password managers
+                                placeholder="john123"
                                 className="w-full px-4 py-2 text-gray-900 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-all"
                             />
                         </div>
@@ -68,7 +68,6 @@ export default function LoginPage(){
                                 placeholder="••••••••••"
                                 className="w-full px-4 py-2 text-gray-900 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-all"
                             />
-                            
                         </div>
                         
                         {/*TODO: add disabled={isPending} attribute */}

@@ -2,7 +2,10 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
-// Import your models
+//hashing
+import bcrypt from 'bcryptjs'
+
+// Import models
 import Admin from '../Models/Admin';
 import Station from '../Models/Station';
 
@@ -32,18 +35,17 @@ async function seed() {
     console.log('Connecting to MongoDB');
     await mongoose.connect(process.env.MONGODB_CONNECTION_STRING);
     
-    console.log('Clearing existing data');
+    /*console.log('Clearing existing data');
     await Station.deleteMany({});
 
-    console.log('🚉 Seeding Stations...');
-    await Station.insertMany(STATIONS);
+    console.log('Seeding Stations...');
+    await Station.insertMany(STATIONS);*/
 
     console.log('Seeding Users');
-    
     // create admin
     await Admin.create({
       username: 'admin2',
-      password: 'admin123', // TODO: HASH THE PASSWORD'
+      password: await bcrypt.hash('admin123', 10), //HASH THE PASSWORD'
     });
 
 

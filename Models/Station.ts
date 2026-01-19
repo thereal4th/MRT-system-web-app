@@ -6,15 +6,14 @@ export interface StationDocument extends Document {
     status?: 'OPEN' | 'CLOSED' | 'MAINTENANCE';
     crowdLevel?: 'LOW' | 'MODERATE' | 'HEAVY';
     orderIndex: number; //1 for north-ave, 11 for taft, important for sorting
-    distFromStartKm: number;
+    distFromStartKm: number; 
 }
-
 const StationSchema = new Schema<StationDocument>({
     name: {type: String, required: true, unique: true, enum: ['North Avenue', 'Quezon Avenue','Cubao', 'Santolan', 'Pasig', 'Shaw Boulevard', 'Guadalupe', 'Buendia', 'Ayala', 'Magallanes', 'Taft Avenue']},
     slug: {type: String, required: true, unique: true, lowercase: true, enum: ['north-ave', 'quezon-ave','cubao', 'santolan', 'pasig', 'shaw-boulevard', 'guadalupe', 'buendia', 'ayala', 'magallanes', 'taft-ave']},
     status: { type: String, enum: ['OPEN', 'CLOSED', 'MAINTENANCE'], default: 'OPEN'},
     crowdLevel: { type: String, enum:['LOW', 'MODERATE', 'HEAVY'], default: 'LOW'},
-    orderIndex: {type: Number, required: true},
+    orderIndex: {type: Number, required: true, unique: true},
     distFromStartKm: {type: Number, required: true}
 })
 

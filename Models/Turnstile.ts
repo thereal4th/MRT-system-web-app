@@ -2,11 +2,14 @@
 import User, {UserDocument} from './User';
 import mongoose, {Schema} from 'mongoose';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export interface TurnstileDocument extends UserDocument{};
+export interface TurnstileDocument extends UserDocument{
+    type: 'ENTRY' | 'EXIST';
+    station: string;
+};
 
 const TurnstileSchema = new Schema<TurnstileDocument>({
-    //dont need to add anything here    
+    type: {type: String, required: true, enum: ['ENTRY', 'EXIT']},
+    station: {type: String, required: true, enum: ['north-ave', 'quezon-ave','cubao', 'santolan', 'pasig', 'shaw-boulevard', 'guadalupe', 'buendia', 'ayala', 'magallanes', 'taft-ave']}
 })
 //check first if turnstile models already exists, then automatically add role: TURNSTILE when document is created
 const Turnstile = mongoose.models.TURNSTILE || User.discriminator('TURNSTILE', TurnstileSchema);
