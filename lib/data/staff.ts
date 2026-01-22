@@ -13,7 +13,7 @@ export async function getAllStaff(){
     try{
         await connectDB();
         
-        const staff = await Staff.find({}).sort({station: 1}).lean(); //extract turnstile documents and sort by station alphabetically
+        const staff = await Staff.find({}).sort({name: 1}).lean(); //extract staff documents and sort by name alphabetically
 
         return staff.map((staff)=> ({
             ...staff,
@@ -31,20 +31,25 @@ export async function createStaff(data: StaffInput){
     try{
         await connectDB();
 
-        const newturnstile = await Staff.create({
+        //check if user exists
+        const existingUser = await Staff.findOne({username: data.username});
+        if (existingUser){
+            throw new Error("Username already exists"); //throw server error for api route/server action to catch
+        }
+
+        const newStaff = await Staff.create({
             ...data,
             password: await bcrypt.hash(data.password, 10),
             //role automatically generated on creation using discriminator() method in Models/User.ts and Models/Staff.ts
         });
         
-
         return{
-            ...newturnstile.toObject(), //convert from complex mongoose doc to typescript object
-            _id: newturnstile._id.toString()
+            ...newStaff.toObject(), //convert from complex mongoose doc to typescript object
+            _id: newStaff._id.toString()
         };
     }
     catch(error){
-        console.log("failed to create new turnstile: ", error);
+        console.log("failed to create new staff: ", error);
         throw error; //throw to let server action know there's an error
     }
 }
@@ -59,17 +64,17 @@ export async function updateStaffData(_id: string, data: Partial<StaffInput>){ /
             data.password = await bcrypt.hash(data.password, 10);
         }
 
-        const updatedturnstile = await Staff.findByIdAndUpdate(
+        const updatedStaff = await Staff.findByIdAndUpdate(
             _id,
             data,
             {new: true} //return updated doc
         ).lean();
 
-        if(!updatedturnstile) return null; //in case turnstile isn't in DB (nonexistent ID)
+        if(!updatedStaff) return null; //in case staff isn't in DB (nonexistent ID)
 
         return{
-            ...updatedturnstile,
-            _id: updatedturnstile._id.toString()
+            ...updatedStaff,
+            _id: updatedStaff._id.toString()
         };
     }
     catch(error){
@@ -77,3 +82,4 @@ export async function updateStaffData(_id: string, data: Partial<StaffInput>){ /
         throw error;
     }
 }
+

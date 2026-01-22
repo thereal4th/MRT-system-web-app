@@ -48,7 +48,7 @@ export async function createStation(data: StationInput){
     }
     catch(error){
         console.log("failed to create new station: ", error);
-        throw error; //throw to let server action know there's an error
+        throw error; //throw error for server action/api route to catch
     }
 }
 

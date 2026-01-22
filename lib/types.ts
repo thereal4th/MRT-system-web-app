@@ -1,5 +1,12 @@
 //for type safety in document creation actions/endpoints
 
+/*export interface UserRoles{
+    role: 'ADMIN'|'STAFF'|'TURNSTILE'|'PASSENGER'
+}*/
+
+//for requireRole function in auth layer
+export type UserRoles = 'ADMIN'|'STAFF'|'TURNSTILE'|'PASSENGER';
+
 export interface StationInput{
     name: string; //full name: "North Avenue"
     slug: string; //enum matching and URLs: "north-ave"
